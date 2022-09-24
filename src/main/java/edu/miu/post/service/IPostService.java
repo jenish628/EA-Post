@@ -2,6 +2,8 @@ package edu.miu.post.service;
 
 import edu.miu.post.dto.PostDto;
 import edu.miu.post.entity.Post;
+import edu.miu.post.requests.PostRequest;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 
@@ -11,6 +13,5 @@ public interface IPostService {
     PostDto findById(long id);
     void update(PostDto post, long id);
     void deleteById(long id);
-    void save(PostDto post);
-
+    void save(PostRequest request) throws Exception;
 }

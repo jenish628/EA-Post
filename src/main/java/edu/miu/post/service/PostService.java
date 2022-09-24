@@ -1,12 +1,17 @@
 package edu.miu.post.service;
 
 import edu.miu.post.dto.PostDto;
+import edu.miu.post.entity.Document;
 import edu.miu.post.entity.Post;
 import edu.miu.post.repository.PostRepository;
+import edu.miu.post.requests.PostRequest;
 import eye2web.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,11 +19,14 @@ import java.util.stream.Collectors;
 
 public class PostService implements IPostService {
 
-    @Resource
+    @Autowired
     private PostRepository postRepository;
 
-    @Resource
+    @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private Storage storage;
 
     @Override
     public List<PostDto> findAll() {
@@ -45,7 +53,18 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public void save(PostDto post) {
-        postRepository.save(modelMapper.map(post,Post.class));
+    public void save(PostRequest request) throws Exception {
+        Post post = modelMapper.map(request, Post.class);
+
+        if (request.getFiles() != null) {
+            for (MultipartFile file: request.getFiles()) {
+                String fileName = storage.uploadFile(file);
+                var document = new Document();
+                document.setUrl(fileName);
+                post.addDocument(document);
+            }
+        }
+
+        postRepository.save(post);
     }
 }
