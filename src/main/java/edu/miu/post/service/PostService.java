@@ -38,13 +38,14 @@ public class PostService implements IPostService {
 
     @Override
     public PostDto findById(long id) {
-        var post =  postRepository.findById(id).get();
+        var post =  postRepository.findById(id).orElseThrow();
         return modelMapper.map(post, PostDto.class);
     }
 
     @Override
     public void update(PostDto post, long id) {
-         postRepository.save(modelMapper.map(post, Post.class));
+
+        postRepository.save(modelMapper.map(post, Post.class));
     }
 
     @Override

@@ -12,6 +12,5 @@ import java.util.List;
 public class PostRequest {
     private String title;
     private String description;
-
     private List<MultipartFile> files;
 }
