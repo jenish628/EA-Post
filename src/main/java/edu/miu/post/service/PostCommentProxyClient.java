@@ -2,6 +2,7 @@ package edu.miu.post.service;
 
 
 import edu.miu.post.dto.PostCommentDto;
+import edu.miu.post.dto.PostDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,4 +25,8 @@ public interface PostCommentProxyClient {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/comments/{commentId}", produces = "application/json")
     void updateComment(@PathVariable Long commentId, @RequestBody PostCommentDto commentDto);
+
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/comments/by-post-list", produces = "application/json")
+    List<PostCommentDto> getAllCommentListByPostIdList(@RequestBody List<Long>  postIdList);
 }

@@ -14,4 +14,6 @@ public interface IPostService {
     void update(PostDto post, long id);
     void deleteById(long id);
     void save(PostRequest request) throws Exception;
+
+    List<Long> findAllPostId();
 }

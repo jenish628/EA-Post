@@ -38,7 +38,7 @@ public class PostService implements IPostService {
 
     @Override
     public PostDto findById(long id) {
-        var post =  postRepository.findById(id).orElseThrow();
+        var post = postRepository.findById(id).orElseThrow();
         return modelMapper.map(post, PostDto.class);
     }
 
@@ -53,12 +53,18 @@ public class PostService implements IPostService {
         postRepository.deleteById(id);
     }
 
+
+    @Override
+    public List<Long> findAllPostId() {
+        return postRepository.findAllProjectId();
+    }
+
     @Override
     public void save(PostRequest request) throws Exception {
         Post post = modelMapper.map(request, Post.class);
 
         if (request.getFiles() != null) {
-            for (MultipartFile file: request.getFiles()) {
+            for (MultipartFile file : request.getFiles()) {
                 String fileName = storage.uploadFile(file);
                 var document = new Document();
                 document.setUrl(fileName);
