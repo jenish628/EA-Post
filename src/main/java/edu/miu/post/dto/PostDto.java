@@ -15,14 +15,14 @@ public class PostDto {
     private String title;
     private String description;
     private List<String> files;
-    List<PostCommentDto> postCommentDtos;
+    List<PostCommentDto> comments;
 
 
     public void setComment(PostCommentDto commentDto) {
-        if(postCommentDtos == null){
-            postCommentDtos = new ArrayList<>();
+        if(comments == null){
+            comments = new ArrayList<>();
         }
-        postCommentDtos.add(commentDto);
+        comments.add(commentDto);
     }
 
 }

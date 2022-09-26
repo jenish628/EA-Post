@@ -15,5 +15,5 @@ public class PostCommentDto {
     private Long id;
     private String comment;
     private Long postId;
-    private LocalDate createDate;
+    private LocalDate createdDate;
 }
