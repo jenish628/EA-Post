@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value = "post-commnet-service", url = "http://post-comments-app:8080/api/")
+@FeignClient(value = "post-comment-service", url = "${post.comments.url}")
 public interface PostCommentProxyClient {
 
     @RequestMapping(method = RequestMethod.GET, value = "/comments", produces = "application/json")
