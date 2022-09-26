@@ -33,7 +33,6 @@ public class PostCommentController {
             postCommentProxyClient.saveCommentByPost(postCommentDto);
             return ResponseEntity.ok().build();
         }
-
     }
 
 

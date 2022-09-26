@@ -1,12 +1,8 @@
 
 
-FROM maven:3.8.6-amazoncorretto-17 AS builder
-WORKDIR /app
-COPY . .
-RUN mvn install
-
 FROM openjdk:17.0.2-jdk as deploy
-MAINTAINER BINOD PANT
+MAINTAINER JENISH GHIMIRE
 WORKDIR /app
-COPY --from=builder /app/target/*.jar post.jar
+COPY target/*.jar post.jar
 CMD ["java","-jar","post.jar"]
+
