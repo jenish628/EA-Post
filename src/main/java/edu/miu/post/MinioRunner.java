@@ -17,16 +17,16 @@ public class MinioRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        ListObjectsArgs objectsArgs = ListObjectsArgs.builder()
-                .bucket("postlist")
-                .build();
-        var results = minioClient.listObjects(objectsArgs);
-        for (Result<Item> result : results) {
-            System.out.println("Bucket items: ");
-            System.out.println("Etag: " + result.get().etag() +
-                    "Object name: " + result.get().objectName() +
-                    "Storage Class: " + result.get().storageClass());
-        }
+//        ListObjectsArgs objectsArgs = ListObjectsArgs.builder()
+//                .bucket("postlist")
+//                .build();
+//        var results = minioClient.listObjects(objectsArgs);
+//        for (Result<Item> result : results) {
+//            System.out.println("Bucket items: ");
+//            System.out.println("Etag: " + result.get().etag() +
+//                    "Object name: " + result.get().objectName() +
+//                    "Storage Class: " + result.get().storageClass());
+//        }
     }
 
 
